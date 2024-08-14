@@ -2,13 +2,13 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 const formId = process.env.FORM_SPREE_FORM_ID;
 
-const setOfOperations = (builder) => {
+const setOfOperations = builder => {
   return {
     postIssue: builder.mutation({
-      query: (data) => {
+      query: data => {
         return {
           url: `https://formspree.io/f/${formId}`,
-          method: "POST",
+          method: "get",
           body: data
         };
       }
@@ -18,7 +18,7 @@ const setOfOperations = (builder) => {
 
 export const issueApi = createApi({
   baseQuery: fetchBaseQuery(),
-  endpoints: (builder) => {
+  endpoints: builder => {
     return setOfOperations(builder);
   }
 });
